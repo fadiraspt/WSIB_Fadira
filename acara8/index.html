@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Mengatur agar halaman web dapat responsif di berbagai perangkat -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Menghubungkan file CSS eksternal bernama "style.css" -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Menghubungkan Bootstrap 5.3.3 untuk memudahkan styling komponen -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Judul halaman yang akan muncul di tab browser -->
+    <title>Kalkulator Sederhana</title>
+</head>
+<body>
+    <!-- Bagian utama halaman yang mengatur tampilan kalkulator -->
+    <div class="container-fluid p-0 m-0 root-container w-100 h-100">
+        <!-- Kontainer utama kalkulator yang menggunakan Bootstrap untuk styling dan tata letak -->
+        <div class="container container-calculator bg-white w-100 h-100 d-flex flex-column justify-content-start align-items-center p-0">
+            <!-- Bar navigasi yang menampilkan judul aplikasi kalkulator -->
+            <nav class="navigation-bar d-flex justify-content-center align-items-center text-white m-0 p-0">
+                <p class="m-0 p-0 text-uppercase">Aplikasi Kalkulator Sederhana</p>
+            </nav>
+            <!-- Bagian kalkulator tempat form input dan tombol operasi berada -->
+            <div class="calculator m-4 p-3 rounded-4 d-flex flex-column">
+                <!-- Form input untuk memasukkan nilai yang akan dihitung -->
+                <form action="">
+                    <div class="display-input">
+                        <!-- Input field untuk menampilkan angka yang dimasukkan oleh pengguna -->
+                        <input type="text" class="w-100 h-100 text-end p-2 input-field" placeholder="Masukan nilai yang ingin dihitung">
+                    </div>
+                </form>
+
+                <!-- Kontainer untuk tombol-tombol operasi dan angka kalkulator -->
+                <div class="container-button d-flex justify-content-between flex-wrap">
+                    <!-- Tombol-tombol kalkulator termasuk operasi aritmatika dan angka -->
+                    <button class="button btn-operasi" id="clear">CE</button>
+                    <button class="button btn-operasi" id="delete">DEL</button>
+                    <button class="button btn-operasi" id="persen">%</button>
+                    <button class="button btn-operasi">/</button>
+                    <button class="button">7</button>
+                    <button class="button">8</button>
+                    <button class="button">9</button>
+                    <button class="button btn-operasi" id="perkalian">X</button>
+                    <button class="button">4</button>
+                    <button class="button">5</button>
+                    <button class="button">6</button>
+                    <button class="button btn-operasi" id="pengurangan">-</button>
+                    <button class="button">1</button>
+                    <button class="button">2</button>
+                    <button class="button">3</button>
+                    <button class="button btn-operasi" id="penjumlahan">+</button>
+                    <button class="button">0</button>
+                    <button class="button">00</button>
+                    <button class="button" id="titik">.</button>
+                    <button class="button btn-operasi" id="samaDengan">=</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Menghubungkan Bootstrap JavaScript untuk mendukung beberapa interaksi dinamis -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
