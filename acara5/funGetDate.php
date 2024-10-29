@@ -1,6 +1,6 @@
 <?php
-// Mengambil informasi tanggal dan waktu saat ini menggunakan fungsi getdate().
-// Fungsi ini mengembalikan array dengan elemen-elemen seperti hari, bulan, dan tahun.
+// Mengambil informasi tanggal dan waktu saat ini dengan menggunakan fungsi getdate().
+// Fungsi ini mengembalikan array dengan elemen-elemen seperti hari, bulan, dan juga tahun.
 $tangalSkrng = getdate();
 
 // Menampilkan tanggal saat ini dengan format: hari-bulan-tahun.

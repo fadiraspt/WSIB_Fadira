@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Sederhana dengan Firestore</title>
+
+  <!-- Firebase SDK (Versi Modular Terbaru) -->
+  <script type="module">
+    // Impor modul Firebase dan Firestore dari versi terbaru
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-firestore.js";
+
+    // Langkah 4: Konfigurasi Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyBPwiG27-LsqjAQSy2BP0uHNHt3WgeIPb4",
+        authDomain: "crudwebapp-27aa5.firebaseapp.com",
+        projectId: "crudwebapp-27aa5",
+        storageBucket: "crudwebapp-27aa5.appspot.com",
+        messagingSenderId: "638355418274",
+        appId: "1:638355418274:web:06d7f7073b3d9d00913bfb",
+        measurementId: "G-V4Y9L9HRW0"
+    };
+
+    // Inisialisasi Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Inisialisasi Firestore
+    const db = getFirestore(app);
+
+    // Menambahkan Data ke Firestore dengan validasi dan async/await
+    document.getElementById('userForm').addEventListener('submit', async function (e) {
+      e.preventDefault();  // Mencegah form submit bawaan
+
+      var name = document.getElementById('name').value.trim();
+      var age = document.getElementById('age').value;
+      var city = document.getElementById('city').value.trim();
+      var formMessage = document.getElementById('formMessage');
+
+      // Validasi input
+      if (name === '' || city === '' || age === '') {
+        formMessage.textContent = 'Harap isi semua field!';
+        formMessage.classList.add('error');
+        formMessage.style.display = 'block';
+        return;
+      }
+
+      formMessage.style.display = 'none';  // Sembunyikan pesan sebelumnya
+      formMessage.textContent = 'Menambah data...';
+      formMessage.classList.remove('error');
+      formMessage.style.display = 'block';
+
+      try {
+        // Tambahkan data ke Firestore
+        await addDoc(collection(db, "users"), { name, age: Number(age), city });
+        console.log("Data berhasil ditambahkan!");
+        document.getElementById('userForm').reset();  // Reset form setelah submit
+        fetchUsers();  // Perbarui daftar user
+        formMessage.style.display = 'none';  // Sembunyikan pesan setelah sukses
+      } catch (error) {
+        console.error("Error menambahkan data: ", error);
+        formMessage.textContent = 'Terjadi kesalahan, coba lagi.';
+        formMessage.classList.add('error');
+      }
+    });
+
+    // Menampilkan Data dari Firestore dengan async/await
+    async function fetchUsers() {
+      const userList = document.getElementById('userList');
+      userList.innerHTML = '';  // Kosongkan daftar sebelum memperbarui
+
+      try {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        if (querySnapshot.empty) {
+          userList.innerHTML = '<li class="loading">Tidak ada data</li>';
+        } else {
+          querySnapshot.forEach((doc) => {
+            const user = doc.data();
+            const li = document.createElement('li');
+            li.textContent = `${user.name}, Usia: ${user.age}, Kota: ${user.city}`;
+            
+            // Tambahkan tombol hapus
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Hapus';
+            deleteBtn.onclick = () => deleteUser(doc.id);
+            li.appendChild(deleteBtn);
+            
+            userList.appendChild(li);
+          });
+        }
+      } catch (error) {
+        console.error("Error mengambil data: ", error);
+        userList.innerHTML = '<li class="error">Terjadi kesalahan saat memuat data.</li>';
+      }
+    }
+
+    // Menghapus Data dari Firestore dengan async/await
+    async function deleteUser(id) {
+      try {
+        await deleteDoc(doc(db, "users", id));
+        console.log("Data berhasil dihapus!");
+        fetchUsers();  // Perbarui daftar user setelah dihapus
+      } catch (error) {
+        console.error("Error menghapus data: ", error);
+      }
+    }
+
+    // Tampilkan user ketika halaman dimuat
+    window.onload = fetchUsers;
+  </script>
+
+  <!-- CSS Styling -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    #userForm, #userList {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      width: 300px;
+    }
+
+    #userForm input, #userForm button {
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    #userList li {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #userList li:last-child {
+      border-bottom: none;
+    }
+
+    button {
+      background-color: #5cb85c;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background-color: #4cae4c;
+    }
+
+    .loading {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+
+  </style>
+
+</head>
+<body>
+
+  <h1>CRUD Sederhana dengan Firestore</h1>
+
+  <!-- Form untuk menambah user -->
+  <form id="userForm">
+    <input type="text" id="name" placeholder="Nama" required />
+    <input type="number" id="age" placeholder="Usia" required />
+    <input type="text" id="city" placeholder="Kota" required />
+    <button type="submit">Tambah User</button>
+    <p id="formMessage" class="loading" style="display: none;"></p>
+  </form>
+
+  <!-- Daftar untuk menampilkan data user -->
+  <h2>Daftar User</h2>
+  <ul id="userList"></ul>
+
+</body>
+</html>

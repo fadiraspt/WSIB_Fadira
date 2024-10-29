@@ -1,18 +1,17 @@
 <?php
 
-// Logika sederhana untuk mengecek ketersediaan tiket berdasarkan tanggal
 
 // Mendeklarasikan variabel $tanggal dengan nilai "2024-09-02"
-// Ini adalah tanggal yang akan dicek ketersediaannya
+// Ini adalah tanggal yang untuk dicek ketersediaannya
 $tanggal = "2024-09-02";
 
 // Mendeklarasikan array $tanggal_tersedia berisi daftar tanggal yang tersedia
 $tanggal_tersedia = ["2024-09-01", "2024-09-02", "2024-09-03"];  // Tanggal yang tersedia
 
 // Menampilkan isi dari array $tanggal_tersedia menggunakan var_dump()
-var_dump($tanggal_tersedia);  // Output: array yang berisi 3 tanggal
+var_dump($tanggal_tersedia);  
 
-// Mengecek apakah $tanggal yang sudah di-trim (menghilangkan spasi di awal dan akhir) ada di dalam array $tanggal_tersedia
+
 // in_array() digunakan untuk mengecek apakah suatu nilai terdapat di dalam array
 if (in_array(trim($tanggal), $tanggal_tersedia)) {
     // Jika $tanggal ditemukan di dalam $tanggal_tersedia, tampilkan pesan bahwa tiket tersedia
@@ -22,12 +21,11 @@ if (in_array(trim($tanggal), $tanggal_tersedia)) {
     echo "Tiket tidak tersedia untuk tanggal tersebut.";
 }
 
-echo "\n";  // Menambahkan baris baru pada output
+echo "\n";  // Menambahkan baris baru untuk output
 
-// Logika sederhana untuk menentukan ulasan berdasarkan rating
 
 // Mendeklarasikan variabel $rating dengan nilai 3
-// Ini adalah nilai rating yang akan digunakan untuk menentukan ulasan
+// nilai rating yang akan digunakan untuk menentukan ulasan
 $rating = 3;
 
 // Menggunakan if-elseif-else untuk menentukan pesan ulasan berdasarkan nilai rating

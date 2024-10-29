@@ -3,11 +3,11 @@
 // Fungsi ini menerima dua parameter: $angka1 dan $angka2.
 function bilanganTerbesar($angka1, $angka2) 
 {
-    // Memeriksa apakah kedua angka sama.
+    // Memeriksa apakah kedua angka sama?
     if ($angka1 == $angka2){
         // Jika kedua angka sama, tampilkan pesan bahwa nilainya sama.
         echo "Bilangan 1 dengan bilangan 2 memiliki nilai yang sama";
-    // Memeriksa apakah $angka1 lebih besar dari $angka2.
+    // Memeriksa apakah $angka1 lebih besar dari $angka2?
     } elseif ($angka1 > $angka2) {
         // Jika $angka1 lebih besar, tampilkan $angka1 sebagai bilangan terbesar.
         echo "Bilangan terbesar adalah : $angka1";

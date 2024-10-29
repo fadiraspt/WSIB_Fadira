@@ -29,18 +29,18 @@ echo "<br>";   // Menambahkan baris baru
 // Mendeklarasikan $x sebagai angka desimal dengan koma, 10.365 (tipe float)
 $x = 10.365;  
 // var_dump() menunjukkan bahwa $x adalah float dengan nilai 10.365
-var_dump($x);  // Output: float(10.365)
+var_dump($x);  // Output: float/desimal(10.365)
 echo "<br>";   // Menambahkan baris baru
 
 // Mendeklarasikan $x sebagai angka dalam notasi ilmiah, 2.4e3 berarti 2.4 x 10^3 (2400)
 $x = 2.4e3;  
-// var_dump() menunjukkan bahwa $x adalah float dengan nilai 2400
+// var_dump() menunjukkan bahwa $x adalah float/desimal dengan nilai 2400
 var_dump($x);  // Output: float(2400)
 echo "<br>";   // Menambahkan baris baru
 
 // Mendeklarasikan $x dengan angka notasi ilmiah 8E-5, yang berarti 8 x 10^-5 (0.00008)
 $x = 8E-5;  
-// var_dump() menunjukkan bahwa $x adalah float dengan nilai 0.00008
+// var_dump() menunjukkan bahwa $x adalah float/desimal dengan nilai 0.00008
 var_dump($x);  // Output: float(0.00008)
 echo "<br>";   // Menambahkan baris baru
 

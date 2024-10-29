@@ -6,7 +6,7 @@ $arr = array(1, 2, 3, 4);
 // Variabel $value akan menjadi referensi ke setiap elemen dalam array
 foreach ($arr as &$value) {
     // Setiap elemen dalam array dikalikan dengan 2
-    // Karena $value adalah referensi, nilai asli dalam $arr juga akan berubah
+    // Karena $value referensi, nilai asli dalam $arr juga akan berubah
     $value = $value * 2;
     // Misalnya: elemen pertama (1) dikalikan menjadi 2, elemen kedua (2) menjadi 4, dst.
 }
